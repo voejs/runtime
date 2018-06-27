@@ -1,0 +1,20 @@
+{
+  "name": "@voejs/runtime",
+  "version": "1.0.0",
+  "description": "webpack plugin for voe runtime",
+  "author": "evio",
+  "license": "MIT",
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:voejs/runtime.git"
+  },
+  "scripts": {
+    "test:watch": "node test/watch.js",
+    "test:build": "node test/build.js"
+  },
+  "dependencies": {
+    "chokidar": "^2.0.4",
+    "globby": "^8.0.1"
+  }
+}
