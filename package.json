@@ -1,6 +1,6 @@
 {
   "name": "@voejs/runtime",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "webpack plugin for voe runtime",
   "author": "evio",
   "license": "MIT",
@@ -14,6 +14,7 @@
     "test:build": "node test/build.js"
   },
   "dependencies": {
+    "array-uniq": "^2.0.0",
     "chokidar": "^2.0.4",
     "globby": "^8.0.1"
   }

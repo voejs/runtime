@@ -17,6 +17,7 @@ module.exports = class VoeRuntime extends Emitter {
     this.values = {} ;
     this.voecache = path.resolve(this.cwd, name);
     this.addProgram('__project__:' + this.cwd);
+    this.plugin = { imports: {}, values: {} }
   }
   
   /**
@@ -95,6 +96,12 @@ module.exports = class VoeRuntime extends Emitter {
         maps[item] = `<${item}>`;
       }
     }
+    for (let i in this.plugin.imports) {
+      if (hasOwnProperty.call(this.plugin.imports, i)) {
+        imports.push(`import ${i} from '${this.plugin.imports[i]}';`);
+        maps[item] = `<${i}>`;
+      }
+    }
     for (const j in this.values) {
       if (hasOwnProperty.call(this.values, j)) {
         if (typeof this.values[j] === 'function') {
@@ -102,6 +109,7 @@ module.exports = class VoeRuntime extends Emitter {
         }
       }
     }
+    vars.plugin = this.plugin.values;
     
     const content = [
       imports.join('\n'),

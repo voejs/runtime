@@ -1,3 +1,4 @@
+const fs = require('fs');
 const path = require('path');
 
 exports.format = format;
@@ -71,4 +72,9 @@ function unlinkValue(str, obj) {
       data = data[strs[i]];
     }
   }
+}
+
+exports.readJson = readJson;
+function readJson(file) {
+  return JSON.parse(fs.readFileSync(file, 'utf8'));
 }

@@ -3,6 +3,7 @@ const Common = require('./lib/common');
 const Components = require('./lib/components');
 const File = require('./lib/file');
 const WebStore = require('./lib/webstore');
+const Plugin = require('./lib/plugin');
 
 module.exports = class VoeRuntime extends RuntimeLoader {
   constructor(options = {}) {
@@ -56,6 +57,11 @@ module.exports = class VoeRuntime extends RuntimeLoader {
   watchWebView() { this.addCompiler(dirs => new Common(this, 'webview', 'app/webview', { rules: [/\.vue$/i] }).watch(dirs)); }
   buildWebView() { this.addCompiler(dirs => new Common(this, 'webview', 'app/webview', { match: ['**/*.vue'] }).build(dirs)); }
   
+  loadPlugins() {
+    const plugin = new Plugin(this, 'config/plugin.json');
+    plugin.parse();
+  }
+  
   watch() {
     this.watchWebView();
     this.watchComponents();
@@ -71,6 +77,7 @@ module.exports = class VoeRuntime extends RuntimeLoader {
     this.watchError();
     this.watchConfig();
     this.watchPluginConfig();
+    this.loadPlugins();
     this.compile();
     this.make();
   }
@@ -90,6 +97,7 @@ module.exports = class VoeRuntime extends RuntimeLoader {
     this.buildError();
     this.buildConfig();
     this.buildPluginConfig();
+    this.loadPlugins();
     this.compile();
     this.make();
   }
