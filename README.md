@@ -35,7 +35,7 @@ loader.build();
 ## Use In Webpack
 
 ```javascript
-const VoeRuntime = require('@voejs/runtime');
+const VoeRuntime = require('@voejs/runtime/voe');
 module.exports = {
   ...
   plugins: [
