@@ -99,7 +99,7 @@ module.exports = class VoeRuntime extends RuntimeLoader {
     this.buildPluginConfig();
     this.loadPlugins();
     this.compile();
-    this.make();
+    this.makeSync();
   }
   
   apply(compiler) {
