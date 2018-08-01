@@ -1,6 +1,6 @@
 {
   "name": "@voejs/runtime",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "webpack plugin for voe runtime",
   "author": "evio",
   "license": "MIT",
