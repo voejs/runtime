@@ -114,7 +114,7 @@ module.exports = class VoeRuntime extends Emitter {
     const content = [
       imports.join('\n'),
       `export const map = ${JSON.stringify(maps, null, 2).replace(/\"\</g, '').replace(/\>\"/g, '')};`,
-      `export const vars = ${JSON.stringify(vars, null, 2)};`,
+      `export const vars = ${JSON.stringify(vars, null, 2).replace(/\"\</g, '').replace(/\>\"/g, '').replace(/\\"/g, '"')};`,
       `export default { map, vars };`
     ].join('\n');
     

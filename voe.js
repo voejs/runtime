@@ -4,6 +4,7 @@ const Components = require('./lib/components');
 const File = require('./lib/file');
 const WebStore = require('./lib/webstore');
 const Plugin = require('./lib/plugin');
+const WebView = require('./lib/webview');
 
 module.exports = class VoeRuntime extends RuntimeLoader {
   constructor(options = {}) {
@@ -54,8 +55,10 @@ module.exports = class VoeRuntime extends RuntimeLoader {
   watchWebStore() { this.addCompiler(dirs => new WebStore(this, 'webstore', 'app/webstore').watch(dirs)); }
   buildWebStore() { this.addCompiler(dirs => new WebStore(this, 'webstore', 'app/webstore').build(dirs)); }
   
-  watchWebView() { this.addCompiler(dirs => new Common(this, 'webview', 'app/webview', { rules: [/\.vue$/i] }).watch(dirs)); }
-  buildWebView() { this.addCompiler(dirs => new Common(this, 'webview', 'app/webview', { match: ['**/*.vue'] }).build(dirs)); }
+  // watchWebView() { this.addCompiler(dirs => new Common(this, 'webview', 'app/webview', { rules: [/\.vue$/i] }).watch(dirs)); }
+  // buildWebView() { this.addCompiler(dirs => new Common(this, 'webview', 'app/webview', { match: ['**/*.vue'] }).build(dirs)); }
+  watchWebView() { this.addCompiler(dirs => new WebView(this, 'webview', 'app/webview', { rules: [/\.vue$/i] }).watch(dirs)); }
+  buildWebView() { this.addCompiler(dirs => new WebView(this, 'webview', 'app/webview', { match: ['**/*.vue'] }).build(dirs)); }
   
   loadPlugins() {
     const plugin = new Plugin(this, 'config/plugin.json');
