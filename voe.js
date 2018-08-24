@@ -106,7 +106,7 @@ module.exports = class VoeRuntime extends RuntimeLoader {
   }
   
   apply(compiler) {
-    this.env = compiler.options.mode;
+    // this.env = compiler.options.mode;
     if (compiler.options.mode === 'development') {
       compiler.plugin('afterPlugins', () => this.watch());
       compiler.plugin('watchClose', () => this.stop());
